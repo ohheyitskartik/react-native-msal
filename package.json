@@ -6,10 +6,11 @@
   "types": "build/index.d.ts",
   "source": "src/index",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "expo-module build",
     "clean": "expo-module clean",
     "expo-module": "expo-module",
-    "lint": "expo-module lint",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx src --cache --fix",
     "prepare": "expo-module prepare && husky install",
     "prepublishOnly": "expo-module prepublishOnly",
     "test": "expo-module test",
@@ -44,8 +45,6 @@
     "@expo/config-plugins": "^4.0.6"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.1.0",
-    "@commitlint/config-conventional": "^16.0.0",
     "@react-native-community/eslint-config": "^3.0.0",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.5",
@@ -75,10 +74,8 @@
       "<rootDir>/lib/"
     ]
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "npm run lint"
   },
   "prettier": {
     "singleQuote": true,
