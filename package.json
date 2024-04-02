@@ -1,6 +1,6 @@
 {
 	"name": "react-native-msal",
-	"version": "4.0.4",
+	"version": "4.1.0",
 	"description": "React Native wrapper for iOS and Android",
 	"source": "src/index",
 	"scripts": {
@@ -18,16 +18,16 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/elkinjosetm/react-native-msal.git"
+		"url": "git+https://github.com/RollKall/react-native-msal.git"
 	},
-	"author": "Elkin Torres <elkinjosetm@gmail.com>",
+	"author": "Elkin Torres <etorres@rollkall.com>",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/elkinjosetm/react-native-msal/issues"
+		"url": "https://github.com/RollKall/react-native-msal/issues"
 	},
-	"homepage": "https://github.com/elkinjosetm/react-native-msal#readme",
+	"homepage": "https://github.com/RollKall/react-native-msal#readme",
 	"dependencies": {
-		"@azure/msal-browser": "^2.1.0"
+		"@azure/msal-browser": "^3.11.1"
 	},
 	"devDependencies": {
 		"@react-native/babel-preset": "0.73.21",
