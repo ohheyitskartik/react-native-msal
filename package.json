@@ -6,6 +6,7 @@
   "types": "build/index.d.ts",
   "source": "src/index",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "expo-module build",
     "clean": "expo-module clean",
     "expo-module": "expo-module",
