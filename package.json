@@ -2,10 +2,10 @@
 	"name": "react-native-msal",
 	"version": "4.1.0",
 	"description": "React Native wrapper for iOS and Android",
-	"source": "src/index",
+	"main": "src",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
-		"lint": "eslint --ext .ts,.tsx,.js,.jsx src --cache --fix"
+		"lint": "eslint --ext .ts src --fix"
 	},
 	"keywords": [
 		"react-native",
@@ -32,8 +32,6 @@
 	"devDependencies": {
 		"@react-native/babel-preset": "0.73.21",
 		"@react-native/eslint-config": "0.73.2",
-		"@react-native/metro-config": "0.73.5",
-		"@react-native/typescript-config": "0.73.1",
 		"@types/react": "^18.2.6",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
