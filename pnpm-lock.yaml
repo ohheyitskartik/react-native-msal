@@ -16,12 +16,6 @@ devDependencies:
   '@react-native/eslint-config':
     specifier: 0.73.2
     version: 0.73.2(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.3)
-  '@react-native/metro-config':
-    specifier: 0.73.5
-    version: 0.73.5(@babel/core@7.24.3)(@babel/preset-env@7.24.3)
-  '@react-native/typescript-config':
-    specifier: 0.73.1
-    version: 0.73.1
   '@types/react':
     specifier: ^18.2.6
     version: 18.2.74
@@ -2541,29 +2535,8 @@ packages:
       - supports-color
     dev: true
 
-  /@react-native/metro-config@0.73.5(@babel/core@7.24.3)(@babel/preset-env@7.24.3):
-    resolution: {integrity: sha512-3bNWoHzOzP/+qoLJtRhOVXrnxKmSY3i4y5PXyMQlIvvOI/GQbXulPpEZxK/yUrf1MmeXHLLFufFbQWlfDEDoxA==}
-    engines: {node: '>=18'}
-    dependencies:
-      '@react-native/js-polyfills': 0.73.1
-      '@react-native/metro-babel-transformer': 0.73.15(@babel/core@7.24.3)(@babel/preset-env@7.24.3)
-      metro-config: 0.80.8
-      metro-runtime: 0.80.8
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/preset-env'
-      - bufferutil
-      - encoding
-      - supports-color
-      - utf-8-validate
-    dev: true
-
   /@react-native/normalize-colors@0.73.2:
     resolution: {integrity: sha512-bRBcb2T+I88aG74LMVHaKms2p/T8aQd8+BZ7LuuzXlRfog1bMWWn/C5i0HVuvW4RPtXQYgIlGiXVDy9Ir1So/w==}
-    dev: true
-
-  /@react-native/typescript-config@0.73.1:
-    resolution: {integrity: sha512-7Wrmdp972ZO7xvDid+xRGtvX6xz47cpGj7Y7VKlUhSVFFqbOGfB5WCpY1vMr6R/fjl+Og2fRw+TETN2+JnJi0w==}
     dev: true
 
   /@react-native/virtualized-lists@0.73.4(react-native@0.73.6):
