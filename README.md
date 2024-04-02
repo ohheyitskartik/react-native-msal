@@ -37,12 +37,6 @@ Don't forget to run `npx pod-install` after!
 
 ## Setup
 
-### Expo
-
-Follow the [Expo setup guide](/docs/expo_setup.md)
-
-### Non-expo
-
 Follow the [Android setup guide](/docs/android_setup.md) and the [iOS setup guide](/docs/ios_setup.md)
 
 ## Use
