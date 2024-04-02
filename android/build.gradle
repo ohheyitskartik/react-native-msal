@@ -41,5 +41,5 @@ android {
 dependencies {
   // noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-android"
-  implementation 'com.microsoft.identity.client:msal:2.2.+'
+  implementation 'com.microsoft.identity.client:msal:5.1.+'
 }
