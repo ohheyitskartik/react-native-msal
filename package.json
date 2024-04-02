@@ -1,24 +1,13 @@
 {
   "name": "react-native-msal",
-  "version": "1.0.3",
+  "version": "4.0.4",
   "description": "React Native wrapper for iOS and Android",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "source": "src/index",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "expo-module build",
-    "clean": "expo-module clean",
-    "expo-module": "expo-module",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx src --cache --fix",
-    "prepare": "expo-module prepare && husky install",
-    "prepublishOnly": "expo-module prepublishOnly",
-    "test": "expo-module test",
-    "example": "yarn --cwd example",
-    "pods": "cd example && npx pod-install",
-    "bootstrap": "yarn example && yarn && yarn pods",
-    "predeploy": "yarn example build:web",
-    "deploy": "gh-pages -d example/web-build"
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx src --cache --fix"
   },
   "keywords": [
     "react-native",
@@ -27,22 +16,20 @@
     "msal",
     "azure",
     "b2c",
-    "aad",
-    "expo"
+    "aad"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stashenergy/react-native-msal.git"
+    "url": "git+https://github.com/elkinjosetm/react-native-msal.git"
   },
-  "author": "Stash Energy <dev@stash.energy> (https://stash.energy)",
+  "author": "Elkin Torres <elkinjosetm@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stashenergy/react-native-msal/issues"
+    "url": "https://github.com/elkinjosetm/react-native-msal/issues"
   },
-  "homepage": "https://github.com/stashenergy/react-native-msal#readme",
+  "homepage": "https://github.com/elkinjosetm/react-native-msal#readme",
   "dependencies": {
-    "@azure/msal-browser": "^2.1.0",
-    "@expo/config-plugins": "^4.0.6"
+    "@azure/msal-browser": "^2.1.0"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "^3.0.0",
@@ -52,7 +39,6 @@
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "expo-module-scripts": "^2.0.0",
     "gh-pages": "^3.1.0",
     "husky": "^7.0.0",
     "jest": "^27.0.6",
