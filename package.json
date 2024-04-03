@@ -26,9 +26,6 @@
 		"url": "https://github.com/RollKall/react-native-msal/issues"
 	},
 	"homepage": "https://github.com/RollKall/react-native-msal#readme",
-	"dependencies": {
-		"@azure/msal-browser": "^3.11.1"
-	},
 	"devDependencies": {
 		"@react-native/babel-preset": "0.73.21",
 		"@react-native/eslint-config": "0.73.2",

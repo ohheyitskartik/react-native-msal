@@ -1,129 +1,66 @@
-import {PublicClientApplication as MSALPublicClientApplication} from '@azure/msal-browser';
+import {Platform} from 'react-native';
 
+import RNMSAL from './nativeModule';
 import type {
 	MSALConfiguration,
 	MSALInteractiveParams,
 	MSALSilentParams,
 	MSALAccount,
 	MSALSignoutParams,
-	MSALResult,
 	IPublicClientApplication,
 } from './types';
-import {MSALPromptType} from './types';
 
 export class PublicClientApplication implements IPublicClientApplication {
-	private _pca: MSALPublicClientApplication;
+	private isInitialized: boolean = false;
 
-	constructor(private readonly config: MSALConfiguration) {
-		this._pca = new MSALPublicClientApplication(this.config);
-	}
+	constructor(private readonly config: MSALConfiguration) {}
 
 	public async init() {
+		if (!this.isInitialized) {
+			await RNMSAL.createPublicClientApplication(this.config);
+			this.isInitialized = true;
+		}
 		return this;
 	}
 
-	public async acquireToken(params: MSALInteractiveParams): Promise<MSALResult | undefined> {
-		const {promptType, ...paramsWithoutPromptType} = params;
-		const {accessToken, account, expiresOn, idToken, idTokenClaims, scopes, tenantId} =
-			await this._pca.acquireTokenPopup(
-				promptType
-					? {...paramsWithoutPromptType, prompt: promptTypeToString(promptType)}
-					: paramsWithoutPromptType,
-			);
-		const result: MSALResult = {
-			accessToken,
-			account: {
-				identifier: account!.homeAccountId,
-				environment: account!.environment,
-				tenantId: account!.tenantId,
-				username: account!.username,
-				claims: idTokenClaims,
-			},
-			expiresOn: expiresOn?.getTime()!,
-			idToken,
-			scopes,
-			tenantId,
-		};
-		return result;
+	public async acquireToken(params: MSALInteractiveParams) {
+		this.validateIsInitialized();
+		return await RNMSAL.acquireToken(params);
 	}
 
-	public async acquireTokenSilent(params: MSALSilentParams): Promise<MSALResult | undefined> {
-		const {accessToken, account, expiresOn, idToken, idTokenClaims, scopes, tenantId} =
-			await this._pca.acquireTokenSilent({
-				...params,
-				account: {
-					...params.account,
-					homeAccountId: params.account.identifier,
-					environment: params.account.environment ?? '',
-					localAccountId: '',
-				},
-			});
-		const result: MSALResult = {
-			accessToken,
-			account: {
-				identifier: account?.homeAccountId!,
-				environment: account?.environment,
-				tenantId: account?.tenantId!,
-				username: account?.username!,
-				claims: idTokenClaims,
-			},
-			expiresOn: expiresOn?.getTime()!,
-			idToken,
-			scopes,
-			tenantId,
-		};
-		return result;
+	public async acquireTokenSilent(params: MSALSilentParams) {
+		this.validateIsInitialized();
+		return await RNMSAL.acquireTokenSilent(params);
 	}
 
-	public getAccounts() {
-		const accounts = this._pca.getAllAccounts();
-		return Promise.resolve(
-			accounts.map(a => {
-				const {homeAccountId: identifier, environment, tenantId, username} = a;
-				const account: MSALAccount = {identifier, environment, tenantId, username};
-				return account;
-			}),
-		);
+	public async getAccounts() {
+		this.validateIsInitialized();
+		return await RNMSAL.getAccounts();
 	}
 
-	public getAccount(accountIdentifier: string): Promise<MSALAccount | undefined> {
-		const account = this._pca.getAccountByHomeId(accountIdentifier);
-		if (account == null) {
-			return Promise.reject(Error('Account not found'));
-		} else {
-			const {homeAccountId: identifier, environment, tenantId, username} = account;
-			const msalAccount: MSALAccount = {identifier, environment, tenantId, username};
-			return Promise.resolve(msalAccount);
-		}
+	public async getAccount(accountIdentifier: string) {
+		this.validateIsInitialized();
+		return await RNMSAL.getAccount(accountIdentifier);
 	}
 
 	public async removeAccount(account: MSALAccount) {
-		await this._pca.logoutRedirect({
-			account: {
-				...account,
-				homeAccountId: account.identifier,
-				environment: account.environment ?? '',
-				localAccountId: '',
-			},
-		});
-		return true;
+		this.validateIsInitialized();
+		return await RNMSAL.removeAccount(account);
 	}
 
 	public async signOut(params: MSALSignoutParams) {
-		return await this.removeAccount(params.account);
+		this.validateIsInitialized();
+		return await Platform.select({
+			ios: async () => await RNMSAL.signout(params),
+			default: async () => await RNMSAL.removeAccount(params.account),
+		})();
 	}
-}
 
-type PromptTypeString = 'consent' | 'login' | 'select_account' | 'none';
-function promptTypeToString(promptType: MSALPromptType): PromptTypeString {
-	switch (promptType) {
-		case MSALPromptType.SELECT_ACCOUNT:
-			return 'select_account';
-		case MSALPromptType.LOGIN:
-			return 'login';
-		case MSALPromptType.CONSENT:
-			return 'consent';
-		case MSALPromptType.WHEN_REQUIRED:
-			return 'none';
+	private validateIsInitialized() {
+		if (!this.isInitialized) {
+			throw new Error(
+				'PublicClientApplication is not initialized. You must call the `init` method before any other method.',
+			);
+		}
 	}
 }

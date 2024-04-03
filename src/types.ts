@@ -1,5 +1,3 @@
-import type {Configuration} from '@azure/msal-browser';
-
 export interface IPublicClientApplication {
 	/**
 	 * Acquire a token interactively
@@ -74,10 +72,6 @@ export interface MSALConfiguration {
 		 */
 		redirectUri?: string;
 	};
-	/**
-	 * @platform web
-	 */
-	cache?: Configuration['cache'] & {cacheLocation?: 'localStorage' | 'sessionStorage'};
 	/**
 	 * Options as described here: {@link https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-configuration}
 	 * @platform android
