@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@azure/msal-browser':
-    specifier: ^3.11.1
-    version: 3.11.1
-
 devDependencies:
   '@react-native/babel-preset':
     specifier: 0.73.21
@@ -65,18 +60,6 @@ packages:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
     dev: true
-
-  /@azure/msal-browser@3.11.1:
-    resolution: {integrity: sha512-tZFJnP5ZpgkmazSriEDW+Xl3/4WI823uhnYhWCHPkGywFWEZoPA5VkiCK8x4x8ECXp3mGr5qEI82MU43PBiaKA==}
-    engines: {node: '>=0.8.0'}
-    dependencies:
-      '@azure/msal-common': 14.8.1
-    dev: false
-
-  /@azure/msal-common@14.8.1:
-    resolution: {integrity: sha512-9HfBMDTIgtFFkils+o6gO/aGEoLLuc4z+QLLfhy/T1bTNPiVsX/9CjaBPMZGnMltN/IlMkU5SGGNggGh55p5xA==}
-    engines: {node: '>=0.8.0'}
-    dev: false
 
   /@babel/code-frame@7.16.7:
     resolution: {integrity: sha512-iAXqUn8IIeBTNd72xsFlgaXHkMBMt6y4HJp1tIaK465CWLT/fG1aqB7ykr95gHHmlBdGbFeWWfyB4NJJ0nmeIg==}
